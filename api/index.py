@@ -33,7 +33,7 @@ def home():
                                    hmdt=hmdt,
                                    wind_speed=wind_speed)
 
-    return render_template("home.html")
+    return render_template("index.html")
 
 # Vercel handler
 def handler(environ, start_response):
