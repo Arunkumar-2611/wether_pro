@@ -5,7 +5,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 @app.route('/', methods=["GET", "POST"])
-def home():
+def index():
     if request.method == "POST":
         user_api_key = "5be7cb07d96d28f23a74b4f584b2f2de"
         location = request.form.get("location")
