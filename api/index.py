@@ -2,7 +2,7 @@ from flask import Flask, request, render_template
 import requests
 from datetime import datetime
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="../templates")
 
 @app.route('/', methods=["GET", "POST"])
 def index():
@@ -32,12 +32,8 @@ def index():
                                    weather_desc=weather_desc,
                                    hmdt=hmdt,
                                    wind_speed=wind_speed)
-
     return render_template("index.html")
 
-# Vercel handler
-def handler(environ, start_response):
-    return app.wsgi_app(environ, start_response)
-
-if __name__ == "__main__":
-    app.run(debug=True)
+# 👇 This is the handler for Vercel
+def handler(request, context):
+    return app(request.environ, start_response=context.start_response)
